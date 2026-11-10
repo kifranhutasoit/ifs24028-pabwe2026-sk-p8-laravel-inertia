@@ -1,0 +1,28 @@
+import Editor from '@toast-ui/editor';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { useEffect, useRef } from 'react';
+
+export default function MarkdownEditor({ value = '', onChange, height = '420px' }) {
+    const el = useRef(null);
+    const onChangeRef = useRef(onChange);
+    onChangeRef.current = onChange;
+
+    useEffect(() => {
+        const editor = new Editor({
+            el: el.current,
+            initialValue: value,
+            height,
+            initialEditType: 'markdown',
+            previewStyle: 'vertical',
+            usageStatistics: false,
+            events: {
+                change: () => onChangeRef.current?.(editor.getMarkdown()),
+            },
+        });
+
+        return () => editor.destroy();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return <div ref={el} />;
+}
