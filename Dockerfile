@@ -27,8 +27,8 @@ WORKDIR /var/www/html
 COPY . .
 COPY --from=assets /app/public/build public/build
 
-# Pasang dependensi, siapkan folder storage, atur izin
-RUN composer install --no-dev --optimize-autoloader --no-interaction \
+# Pasang dependensi (termasuk Faker untuk seeder), siapkan storage, atur izin
+RUN composer install --optimize-autoloader --no-interaction \
  && mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs \
  && chown -R www-data:www-data storage bootstrap/cache \
  && chmod -R 775 storage bootstrap/cache
