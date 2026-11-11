@@ -27,7 +27,7 @@ export default function Login() {
                             className="w-full rounded-md border border-slate-300 px-3 py-2"
                             autoFocus
                         />
-                        {errors.username && <p className="mt-1 text-sm text-red-600">{errors.username}</p>}
+                        {errors.username && <p className="mt-1 text-sm text-red-700">{errors.username}</p>}
                     </div>
                     <div>
                         <label htmlFor="login-password" className="mb-1 block text-sm font-medium">Password</label>
@@ -38,7 +38,7 @@ export default function Login() {
                             onChange={(e) => setData('password', e.target.value)}
                             className="w-full rounded-md border border-slate-300 px-3 py-2"
                         />
-                        {errors.password && <p className="mt-1 text-sm text-red-600">{errors.password}</p>}
+                        {errors.password && <p className="mt-1 text-sm text-red-700">{errors.password}</p>}
                     </div>
                     <label className="flex items-center gap-2 text-sm">
                         <input type="checkbox" checked={data.remember} onChange={(e) => setData('remember', e.target.checked)} />

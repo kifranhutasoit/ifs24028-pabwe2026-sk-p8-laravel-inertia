@@ -19,7 +19,7 @@ function Flash() {
 
 function Avatar({ user }) {
     return user.profile_photo_url ? (
-        <img src={user.profile_photo_url} alt={user.name} className="h-8 w-8 rounded-full object-cover" />
+        <img src={user.profile_photo_url} alt={user.name} width={32} height={32} className="h-8 w-8 rounded-full object-cover" />
     ) : (
         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-sm font-semibold text-white">
             {user.name.charAt(0).toUpperCase()}
@@ -48,7 +48,7 @@ function PublicShell({ children }) {
                                     {user.role === 'admin' ? 'Panel Admin' : 'Dashboard Penulis'}
                                 </Link>
                                 <Avatar user={user} />
-                                <button type="button" onClick={logout} className="text-slate-500 hover:text-red-600">Keluar</button>
+                                <button type="button" onClick={logout} className="text-slate-500 hover:text-red-700">Keluar</button>
                             </>
                         ) : (
                             <>
@@ -123,7 +123,7 @@ function DashboardShell({ children }) {
                         <Avatar user={user} />
                         <span className="font-medium">{user.name}</span>
                         <span className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs text-indigo-700">{user.role}</span>
-                        <button type="button" onClick={logout} className="text-slate-500 hover:text-red-600">Keluar</button>
+                        <button type="button" onClick={logout} className="text-slate-500 hover:text-red-700">Keluar</button>
                     </div>
                 </header>
                 <main className="flex-1 p-6">

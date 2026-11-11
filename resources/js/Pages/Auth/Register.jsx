@@ -41,7 +41,7 @@ export default function Register() {
                                 onChange={(e) => setData(f.name, e.target.value)}
                                 className="w-full rounded-md border border-slate-300 px-3 py-2"
                             />
-                            {errors[f.name] && <p className="mt-1 text-sm text-red-600">{errors[f.name]}</p>}
+                            {errors[f.name] && <p className="mt-1 text-sm text-red-700">{errors[f.name]}</p>}
                         </div>
                     ))}
                     <button

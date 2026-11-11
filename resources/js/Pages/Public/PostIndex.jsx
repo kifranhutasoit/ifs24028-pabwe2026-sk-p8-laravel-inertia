@@ -38,12 +38,14 @@ export default function PostIndex({ posts, categories, filters }) {
             >
                 <input
                     type="search"
+                    aria-label="Cari artikel"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Cari judul atau isi artikel..."
                     className="min-w-60 flex-1 rounded-md border border-slate-300 px-3 py-2"
                 />
                 <select
+                    aria-label="Filter kategori"
                     value={category}
                     onChange={(e) => {
                         setCategory(e.target.value);
@@ -66,15 +68,15 @@ export default function PostIndex({ posts, categories, filters }) {
                     {posts.data.map((post) => (
                         <Link key={post.id} href={`/articles/${post.slug}`} className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md">
                             {post.cover_url ? (
-                                <img src={post.cover_url} alt={post.title} className="h-44 w-full object-cover" />
+                                <img src={post.cover_url} alt={post.title} width={400} height={176} loading="lazy" decoding="async" className="h-44 w-full object-cover" />
                             ) : (
-                                <div className="flex h-44 items-center justify-center bg-gradient-to-br from-indigo-100 to-violet-100 text-4xl">✍️</div>
+                                <div aria-hidden="true" className="flex h-44 items-center justify-center bg-gradient-to-br from-indigo-100 to-violet-100 text-4xl">✍️</div>
                             )}
                             <div className="p-4">
                                 <span className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-700">{post.category}</span>
                                 <h2 className="mt-2 text-lg font-semibold group-hover:text-indigo-700">{post.title}</h2>
                                 <p className="mt-1 line-clamp-3 text-sm text-slate-600">{post.excerpt}</p>
-                                <p className="mt-3 text-xs text-slate-400">
+                                <p className="mt-3 text-xs text-slate-600">
                                     {post.user?.name} &middot; {post.published_at ? new Date(post.published_at).toLocaleDateString('id-ID') : ''}
                                 </p>
                             </div>

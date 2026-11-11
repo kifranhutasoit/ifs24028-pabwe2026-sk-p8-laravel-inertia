@@ -1,5 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
-import MarkdownViewer from '../../Components/MarkdownViewer';
+import { lazy, Suspense } from 'react';
+const MarkdownViewer = lazy(() => import('../../Components/MarkdownViewer'));
 import AppLayout from '../../Layouts/AppLayout';
 
 export default function PostShow({ post }) {
@@ -15,10 +16,12 @@ export default function PostShow({ post }) {
                     Oleh {post.user?.name} &middot; {post.published_at ? new Date(post.published_at).toLocaleDateString('id-ID', { dateStyle: 'long' }) : ''}
                 </p>
 
-                {post.cover_url && <img src={post.cover_url} alt={post.title} className="my-6 max-h-96 w-full rounded-xl object-cover" />}
+                {post.cover_url && <img src={post.cover_url} alt={post.title} width={768} height={384} decoding="async" className="my-6 max-h-96 w-full rounded-xl object-cover" />}
 
                 <div className="mt-6">
-                    <MarkdownViewer content={post.content} />
+                    <Suspense fallback={<p className="text-slate-600">Memuat artikel...</p>}>
+                        <MarkdownViewer content={post.content} />
+                    </Suspense>
                 </div>
 
                 {!auth.user && (
